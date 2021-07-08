@@ -1,10 +1,12 @@
 import './App.scss';
 import Header from './components/Header/Header';
+import Calendar from './components/Calendar/Calendar';
 
 function App() {
   return (
     <div className="App">
       <Header />
+      <Calendar />
     </div>
   );
 }
