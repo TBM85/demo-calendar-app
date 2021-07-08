@@ -1,0 +1,19 @@
+@import "../../App";
+
+.calendar {
+  margin: 1em;
+
+  .week-days {
+    display: flex;
+    justify-content: center;
+    border: 1px solid $border-color;
+    border-radius: 0.1em;
+    padding: 0;
+
+    li {
+      list-style: none;
+      padding: 1em;
+      flex: 1;
+    }
+  }
+}
