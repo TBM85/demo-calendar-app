@@ -1,18 +1,30 @@
 @import "../../App";
 
-.calendar {
-  margin: 1em;
+@media (max-width: 991px) {
+  .calendar {
+    width: 100%;
+  }
+}
 
+@media (min-width: 992px) {
+  .calendar {
+    width: 80%;
+    display: inline-block;
+  }
+}
+
+.calendar {
   .week-days {
     display: flex;
     justify-content: center;
     border: 1px solid $border-color;
     border-radius: 0.1em;
     padding: 0;
+    margin: 0;
 
     li {
       list-style: none;
-      padding: 1em;
+      padding: 0.5em;
       flex: 1;
     }
   }
