@@ -22,7 +22,7 @@ const CalendarBody = (props) => {
 
     setDayNumber(daysInMonthArray);
   }, [daysInMonth])
-  
+
   return (
     <div className={classes.calendar_body}>
       <ul className={classes["week-days"]}>
@@ -32,7 +32,7 @@ const CalendarBody = (props) => {
       </ul>
       <div className={classes["month-days"]}>
         {dayNumber.map((number) => (
-          <div key={number.id}>{number.day}</div>
+          <div key={number.id} className={classes["number-day"]}>{number.day}</div>
         ))}
       </div>
     </div>

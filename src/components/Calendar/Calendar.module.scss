@@ -4,9 +4,16 @@
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 992px) and (max-width: 1199px) {
   .calendar {
     width: 80%;
+    display: inline-block;
+  }
+}
+
+@media (min-width: 1200px) {
+  .calendar {
+    width: 60%;
     display: inline-block;
   }
 }
