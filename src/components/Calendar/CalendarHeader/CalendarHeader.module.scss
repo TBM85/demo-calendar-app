@@ -1,5 +1,27 @@
 .calendar_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   h2 {
     font-weight: 400;
+  }
+
+  .calendar_buttons {
+    button {
+      background-position: center;
+      background-size: cover;
+      width: 2em;
+      height: 2em;
+      margin: 1em;
+    }
+
+    .btn-left {
+      background-image: url("../../../assets/icons/chevron-thin-left.svg");
+    }
+  
+    .btn-right {
+      background-image: url("../../../assets/icons/chevron-thin-right.svg");
+    }
   }
 }
