@@ -3,16 +3,10 @@ import Button from "../../UI/Button/Button";
 
 import classes from "./CalendarHeader.module.scss";
 
-const CalendarHeader = () => {
-  let date = new Date();
-  let currentMonthYear = date.toLocaleString("en-us", {
-    month: "long",
-    year: "numeric",
-  });
-
+const CalendarHeader = (props) => {
   return (
     <div className={classes.calendar_header}>
-      <h2>{currentMonthYear}</h2>
+      <h2>{props.currentMonthYear}</h2>
       <div className={classes.calendar_buttons}>
         <Button
           type="button"

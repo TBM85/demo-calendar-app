@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import classes from "./Calendar.module.scss";
+import CalendarBody from "./CalendarBody/CalendarBody";
 import CalendarHeader from "./CalendarHeader/CalendarHeader";
 
 const weekdays = [
@@ -31,17 +32,29 @@ const Calendar = () => {
     };
   }, []);
 
+  // Create an instance of a date object
+  let date = new Date();
+
+  // Get the current month and year
+  let currentMonthYear = date.toLocaleString("en-us", {
+    month: "long",
+    year: "numeric",
+  });
+
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
+
+  // Get the last day of the month
+  let daysInMonth = new Date(year, month, 0).getDate();
+
   return (
     <div className={classes.calendar}>
-      <CalendarHeader />
-      <div className={classes.calendar_body}>
-        <ul className={classes["week-days"]}>
-          {weekdays.map((day, index) => (
-            <li key={index}>{isBigDevice ? day : day.slice(0, 2)}</li>
-          ))}
-        </ul>
-        <div className={classes["month-days"]}></div>
-      </div>
+      <CalendarHeader currentMonthYear={currentMonthYear} />
+      <CalendarBody
+        weekdays={weekdays}
+        isBigDevice={isBigDevice}
+        daysInMonth={daysInMonth}
+      />
     </div>
   );
 };
