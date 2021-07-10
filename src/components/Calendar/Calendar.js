@@ -41,11 +41,22 @@ const Calendar = () => {
     year: "numeric",
   });
 
-  let month = date.getMonth() + 1;
+  let month = date.getMonth();
   let year = date.getFullYear();
 
   // Get the last day of the month
-  let daysInMonth = new Date(year, month, 0).getDate();
+  let daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  // Get the first day of the month
+  let firstDayOfMonth = new Date(year, month, 1);
+
+  // The day of the week of the first day of the month
+  const initialWeekday = firstDayOfMonth.toLocaleDateString('en-us', {
+    weekday: 'long'
+  });
+
+  // The number of empty days before the first day of the month
+  const emptyDays = weekdays.indexOf(initialWeekday.split(', ')[0]);
 
   return (
     <div className={classes.calendar}>
@@ -54,6 +65,7 @@ const Calendar = () => {
         weekdays={weekdays}
         isBigDevice={isBigDevice}
         daysInMonth={daysInMonth}
+        emptyDays={emptyDays}
       />
     </div>
   );
