@@ -41,6 +41,7 @@ const Calendar = () => {
     year: "numeric",
   });
 
+  let day = date.getDate();
   let month = date.getMonth();
   let year = date.getFullYear();
 
@@ -62,6 +63,7 @@ const Calendar = () => {
     <div className={classes.calendar}>
       <CalendarHeader currentMonthYear={currentMonthYear} />
       <CalendarBody
+        day={day}
         weekdays={weekdays}
         isBigDevice={isBigDevice}
         daysInMonth={daysInMonth}

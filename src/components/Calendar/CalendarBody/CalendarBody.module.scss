@@ -25,5 +25,10 @@
       padding: 5% 0;
       border-bottom: 1px solid $border-color;
     }
+
+    .current-day {
+      background-color: $background-color;
+      font-weight: 800;
+    }
   }
 }
