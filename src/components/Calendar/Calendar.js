@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
+import Modal from "../UI/Modal/Modal";
 
 import classes from "./Calendar.module.scss";
 import CalendarBody from "./CalendarBody/CalendarBody";
@@ -18,6 +19,8 @@ const Calendar = () => {
   // Handle media queries
   const [isBigDevice, setIsBigDevice] = useState("");
   const [dateNav, setDateNav] = useState(0);
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const changeDevicesHandler = (bigDevice) => {
     setIsBigDevice(bigDevice.matches);
@@ -70,21 +73,29 @@ const Calendar = () => {
     setDateNav(dateNav + 1);
   };
 
+  const openModalHandler = (open) => {
+    setIsOpen(open);
+  }
+
   return (
-    <div className={classes.calendar}>
-      <CalendarHeader
-        date={date}
-        backMonthHandler={backMonthHandler}
-        nextMonthHandler={nextMonthHandler}
-      />
-      <CalendarBody
-        day={day}
-        weekdays={weekdays}
-        isBigDevice={isBigDevice}
-        daysInMonth={daysInMonth}
-        emptyDays={emptyDays}
-      />
-    </div>
+    <Fragment>
+      {isOpen && <Modal />}
+      <div className={classes.calendar}>
+        <CalendarHeader
+          date={date}
+          backMonthHandler={backMonthHandler}
+          nextMonthHandler={nextMonthHandler}
+        />
+        <CalendarBody
+          day={day}
+          weekdays={weekdays}
+          isBigDevice={isBigDevice}
+          daysInMonth={daysInMonth}
+          emptyDays={emptyDays}
+          onDataToCalendar={openModalHandler}
+        />
+      </div>
+    </Fragment>
   );
 };
 
