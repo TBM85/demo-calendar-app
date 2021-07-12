@@ -17,6 +17,7 @@ const weekdays = [
 const Calendar = () => {
   // Handle media queries
   const [isBigDevice, setIsBigDevice] = useState("");
+  const [dateNav, setDateNav] = useState(0);
 
   const changeDevicesHandler = (bigDevice) => {
     setIsBigDevice(bigDevice.matches);
@@ -35,11 +36,9 @@ const Calendar = () => {
   // Create an instance of a date object
   let date = new Date();
 
-  // Get the current month and year
-  let currentMonthYear = date.toLocaleString("en-us", {
-    month: "long",
-    year: "numeric",
-  });
+  if (dateNav !== 0) {
+    date.setMonth(date.getMonth() + dateNav);
+  }
 
   let day = date.getDate();
   let month = date.getMonth();
@@ -52,16 +51,32 @@ const Calendar = () => {
   let firstDayOfMonth = new Date(year, month, 1);
 
   // The day of the week of the first day of the month
-  const initialWeekday = firstDayOfMonth.toLocaleDateString('en-us', {
-    weekday: 'long'
+  const initialWeekday = firstDayOfMonth.toLocaleDateString("en-us", {
+    weekday: "long",
   });
 
   // The number of empty days before the first day of the month
-  const emptyDays = weekdays.indexOf(initialWeekday.split(', ')[0]);
+  const emptyDays = weekdays.indexOf(initialWeekday.split(", ")[0]);
+
+  // Decreases the value of the navigation date by one
+  // when clicking on the left arrow
+  const backMonthHandler = () => {
+    setDateNav(dateNav - 1);
+  };
+
+  // Increase the value of the navigation date by one
+  // when clicking the right arrow
+  const nextMonthHandler = () => {
+    setDateNav(dateNav + 1);
+  };
 
   return (
     <div className={classes.calendar}>
-      <CalendarHeader currentMonthYear={currentMonthYear} />
+      <CalendarHeader
+        date={date}
+        backMonthHandler={backMonthHandler}
+        nextMonthHandler={nextMonthHandler}
+      />
       <CalendarBody
         day={day}
         weekdays={weekdays}
