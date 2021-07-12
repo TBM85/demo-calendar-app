@@ -1,12 +1,22 @@
-import React, { Fragment } from 'react';
-import reactDom from 'react-dom';
+import React, { Fragment } from "react";
+import reactDom from "react-dom";
 
-import classes from './Modal.module.scss';
+import classes from "./Modal.module.scss";
 
-const Modal = () => {
+const Modal = (props) => {
+  // Hide the modal when the "Close" button is clicked
+  const closeModalHandler = () => {
+    let close = false;
+    
+    // Sends the value to the parent component "Calendar"
+    props.onDataToCalendar(close);
+  };
+
   // Show the backdrop
   const Backdrop = () => {
-    return <div className={classes.backdrop}></div>;
+    return (
+      <div className={classes.backdrop} onClick={closeModalHandler}></div>
+    );
   };
 
   // Show the modal over the backdrop

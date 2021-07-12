@@ -77,9 +77,13 @@ const Calendar = () => {
     setIsOpen(open);
   }
 
+  const closeModalHandler = (close) => {
+    setIsOpen(close);
+  }
+
   return (
     <Fragment>
-      {isOpen && <Modal />}
+      {isOpen && <Modal onDataToCalendar={closeModalHandler} />}
       <div className={classes.calendar}>
         <CalendarHeader
           date={date}

@@ -40,9 +40,8 @@ const CalendarBody = (props) => {
   const openBtnHandler = () => {
     let open = true;
 
+    // Sends the value to the parent component "Calendar"
     props.onDataToCalendar(open);
-
-    console.log("open");
   }
 
   return (
