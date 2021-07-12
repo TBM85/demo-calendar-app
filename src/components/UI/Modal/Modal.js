@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import reactDom from "react-dom";
 import Button from "../Button/Button";
 
@@ -12,6 +12,15 @@ const Modal = (props) => {
     // Sends the value to the parent component "Calendar"
     props.onDataToCalendar(close);
   };
+
+  const [isExpand, setIsExpand] = useState(false);
+  const expandFormHandler = () => {
+    setIsExpand(true);
+  };
+
+  const contractFormHandler = () => {
+    setIsExpand(false);
+  }
 
   // Show the backdrop
   const Backdrop = () => {
@@ -28,7 +37,27 @@ const Modal = (props) => {
             className={classes["btn-close"]}
             onClick={closeModalHandler}
           />
-          <p>Modal</p>
+          {isExpand ? (
+            <form>
+              <label htmlFor="event">Event</label>
+              <input id="event" type="text" />
+              <Button
+                type="button"
+                className={classes["btn-cancel"]}
+                onClick={contractFormHandler}
+              >
+                Cancel
+              </Button>
+            </form>
+          ) : (
+            <Button
+              type="button"
+              className={classes["btn-add"]}
+              onClick={expandFormHandler}
+            >
+              Add Event
+            </Button>
+          )}
         </div>
       </div>
     );
