@@ -29,16 +29,25 @@ const Modal = (props) => {
 
   const eventInput = useRef();
 
+  const [isValid, setIsValid] = useState(true);
+
   const submitHandler = (event) => {
     event.preventDefault();
 
     const enteredEvent = eventInput.current.value;
+
+    if (enteredEvent.trim().length === 0) {
+      setIsValid(false);
+      return;
+    }
 
     const eventData = {
       id: uuidv4(),
       name: enteredEvent,
       date: selectedDate,
     };
+
+    setIsValid(true);
 
     props.onEventDataToCalendar(eventData);
   };
@@ -61,7 +70,15 @@ const Modal = (props) => {
           {isExpand ? (
             <form onSubmit={submitHandler}>
               <label htmlFor="event">Event</label>
-              <input id="event" type="text" ref={eventInput} />
+              <input
+                id="event"
+                type="text"
+                ref={eventInput}
+                className={!isValid ? classes["invalid"] : classes["valid"]}
+              />
+              {!isValid && (
+                <span>You need to enter text</span>
+              )}
               <div className={classes["buttons"]}>
                 <Button type="submit" className={classes["btn-add"]}>
                   Add Event

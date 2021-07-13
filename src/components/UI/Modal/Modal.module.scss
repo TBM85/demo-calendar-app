@@ -88,16 +88,28 @@
 
       input {
         font-size: 1.2em;
-        border: 1px solid $border-color;
         border-radius: 0.25em;
-        margin-bottom: 1em;
         padding: 0.25em 0.5em;
         color: $primary-color;
+      }
+
+      .valid {
+        border: 1px solid $border-color;
+      }
+
+      .invalid {
+        border: 1px solid red;
+      }
+
+      span {
+        color: red;
+        text-align: right;
       }
 
       .buttons {
         display: flex;
         justify-content: flex-end;
+        margin-top: 1em;
       }
 
       button {
