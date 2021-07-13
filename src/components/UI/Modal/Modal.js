@@ -6,8 +6,8 @@ import classes from "./Modal.module.scss";
 import Button from "../Button/Button";
 
 const Modal = (props) => {
-  const { selectedDate } = props;
-  
+  const { selectedDate, events } = props;
+
   // Hide the modal when the "Close" button is clicked
   const closeModalHandler = () => {
     let close = false;
@@ -23,8 +23,8 @@ const Modal = (props) => {
 
   const contractFormHandler = () => {
     setIsExpand(false);
-  }
-  
+  };
+
   const eventInput = useRef();
 
   const submitHandler = (event) => {
@@ -34,12 +34,12 @@ const Modal = (props) => {
 
     const eventData = {
       id: uuidv4(),
-      name: enteredEvent, 
-      date: selectedDate
-    }
+      name: enteredEvent,
+      date: selectedDate,
+    };
 
     props.onEventDataToCalendar(eventData);
-  }
+  };
 
   // Show the backdrop
   const Backdrop = () => {
@@ -61,10 +61,7 @@ const Modal = (props) => {
               <label htmlFor="event">Event</label>
               <input id="event" type="text" ref={eventInput} />
               <div className={classes["buttons"]}>
-                <Button
-                  type="submit"
-                  className={classes["btn-add"]}
-                >
+                <Button type="submit" className={classes["btn-add"]}>
                   Add Event
                 </Button>
                 <Button
@@ -85,12 +82,21 @@ const Modal = (props) => {
               Add Event
             </Button>
           )}
+          <div className={classes["events"]}>
+            {events.length !== 0 && (
+              <ul className={classes["event-list"]}>
+                {events
+                  .filter((event) => event.date === selectedDate)
+                  .map((event) => (
+                    <li key={event.id}>{event.name}</li>
+                  ))}
+              </ul>
+              )}
+          </div>
         </div>
       </div>
     );
   };
-
-  console.log(props.events);
 
   return (
     <Fragment>

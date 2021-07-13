@@ -48,6 +48,7 @@
   z-index: 2;
   display: flex;
   justify-content: center;
+  color: $primary-color;
 
   .modal_content {
     background-color: $background-light;
@@ -78,7 +79,7 @@
     form {
       display: flex;
       flex-direction: column;
-      color: $primary-color;
+      margin-left: 0.8em;
 
       label {
         text-align: left;
@@ -104,6 +105,24 @@
         align-items: center;
         justify-content: center;
         margin: 0 0.25em;
+      }
+    }
+
+    .events {
+      margin: 1.5em 0.8em 0;
+      text-align: left;
+
+      ul {
+        margin: 0.25em 0 0 0;
+        padding: 0;
+        
+        li {
+          list-style: none;
+          border: 1px solid $border-color;
+          border-radius: 0.25em;
+          padding: 0.5em;
+          margin-bottom: 0.5em;
+        }
       }
     }
   }
