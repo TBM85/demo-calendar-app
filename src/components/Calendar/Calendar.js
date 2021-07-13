@@ -73,17 +73,35 @@ const Calendar = () => {
     setDateNav(dateNav + 1);
   };
 
-  const openModalHandler = (open) => {
+  const [selectedDate, setSelectedDate] = useState();
+  // Open Modal
+  const openModalHandler = (open, selectDate) => {
     setIsOpen(open);
-  }
+    setSelectedDate(selectDate);
+  };
 
+  // Close Modal
   const closeModalHandler = (close) => {
     setIsOpen(close);
+  };
+
+  const [events, setEvents] = useState([]);
+  const eventDataHandler = (eventData) => {
+    setEvents((prevEvents) => {
+      return [eventData, ...prevEvents];
+    })
   }
 
   return (
     <Fragment>
-      {isOpen && <Modal onDataToCalendar={closeModalHandler} />}
+      {isOpen && (
+        <Modal
+          onDataToCalendar={closeModalHandler}
+          selectedDate={selectedDate}
+          onEventDataToCalendar={eventDataHandler}
+          events={events}
+        />
+      )}
       <div className={classes.calendar}>
         <CalendarHeader
           date={date}
@@ -92,6 +110,8 @@ const Calendar = () => {
         />
         <CalendarBody
           day={day}
+          month={month}
+          year={year}
           weekdays={weekdays}
           isBigDevice={isBigDevice}
           daysInMonth={daysInMonth}

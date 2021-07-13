@@ -94,10 +94,16 @@
         color: $primary-color;
       }
 
+      .buttons {
+        display: flex;
+        justify-content: flex-end;
+      }
+
       button {
         max-width: fit-content;
         align-items: center;
         justify-content: center;
+        margin: 0 0.25em;
       }
     }
   }

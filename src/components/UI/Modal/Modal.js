@@ -1,10 +1,13 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useRef, useState } from "react";
 import reactDom from "react-dom";
-import Button from "../Button/Button";
+import { v4 as uuidv4 } from "uuid";
 
 import classes from "./Modal.module.scss";
+import Button from "../Button/Button";
 
 const Modal = (props) => {
+  const { selectedDate } = props;
+  
   // Hide the modal when the "Close" button is clicked
   const closeModalHandler = () => {
     let close = false;
@@ -20,6 +23,22 @@ const Modal = (props) => {
 
   const contractFormHandler = () => {
     setIsExpand(false);
+  }
+  
+  const eventInput = useRef();
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    const enteredEvent = eventInput.current.value;
+
+    const eventData = {
+      id: uuidv4(),
+      name: enteredEvent, 
+      date: selectedDate
+    }
+
+    props.onEventDataToCalendar(eventData);
   }
 
   // Show the backdrop
@@ -38,16 +57,24 @@ const Modal = (props) => {
             onClick={closeModalHandler}
           />
           {isExpand ? (
-            <form>
+            <form onSubmit={submitHandler}>
               <label htmlFor="event">Event</label>
-              <input id="event" type="text" />
-              <Button
-                type="button"
-                className={classes["btn-cancel"]}
-                onClick={contractFormHandler}
-              >
-                Cancel
-              </Button>
+              <input id="event" type="text" ref={eventInput} />
+              <div className={classes["buttons"]}>
+                <Button
+                  type="submit"
+                  className={classes["btn-add"]}
+                >
+                  Add Event
+                </Button>
+                <Button
+                  type="button"
+                  className={classes["btn-cancel"]}
+                  onClick={contractFormHandler}
+                >
+                  Cancel
+                </Button>
+              </div>
             </form>
           ) : (
             <Button
@@ -62,6 +89,8 @@ const Modal = (props) => {
       </div>
     );
   };
+
+  console.log(props.events);
 
   return (
     <Fragment>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import Button from "../../UI/Button/Button";
 
 import classes from "./CalendarBody.module.scss";
+import Button from "../../UI/Button/Button";
 
 const CalendarBody = (props) => {
-  const { daysInMonth, weekdays, emptyDays, day } = props;
+  const { daysInMonth, weekdays, emptyDays, day, month, year } = props;
 
   const [daysArray, setDaysArray] = useState([]);
 
@@ -37,11 +37,13 @@ const CalendarBody = (props) => {
     setDaysArray(daysInMonthArray);
   }, [day, daysInMonth, emptyDays]);
 
-  const openBtnHandler = () => {
+  const openBtnHandler = (event) => {
     let open = true;
 
+    let selectDate = `${month + 1}/${event.target.outerText}/${year}`;
+
     // Sends the value to the parent component "Calendar"
-    props.onDataToCalendar(open);
+    props.onDataToCalendar(open, selectDate);
   }
 
   return (
