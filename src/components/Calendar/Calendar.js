@@ -112,6 +112,8 @@ const Calendar = () => {
           day={day}
           month={month}
           year={year}
+          events={events}
+          selectedDate={selectedDate}
           weekdays={weekdays}
           isBigDevice={isBigDevice}
           daysInMonth={daysInMonth}

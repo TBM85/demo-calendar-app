@@ -10,7 +10,9 @@ const CalendarBody = (props) => {
     emptyDays,
     day,
     month,
-    year
+    year,
+    events,
+    selectedDate
   } = props;
 
   const [daysArray, setDaysArray] = useState([]);
@@ -25,23 +27,29 @@ const CalendarBody = (props) => {
       let dayNumber = arrayIndex - emptyDays;
       let currentDay = dayNumber === day;
 
+      let dayString = `${month + 1}/${arrayIndex - emptyDays}/${year}`;
+
+      let filterDate = events.filter((event) => event.date === dayString);
+
       if (arrayIndex > emptyDays) {
         daysInMonthArray.push({
           id: uuidv4(),
           day: dayNumber,
-          currentDay: currentDay
+          currentDay: currentDay,
+          events: filterDate.length > 0
         });
       } else {
         daysInMonthArray.push({
           id: uuidv4(),
           day: "",
-          currentDay: currentDay
+          currentDay: currentDay,
+          events: filterDate.length > 0,
         });
       }
     }
 
     setDaysArray(daysInMonthArray);
-  }, [day, daysInMonth, emptyDays]);
+  }, [day, daysInMonth, emptyDays, events, month, selectedDate, year]);
 
   const openBtnHandler = (event) => {
     let open = true;
@@ -65,7 +73,7 @@ const CalendarBody = (props) => {
             key={number.id}
             className={`${classes["number-day"]} ${
               number.currentDay ? classes["current-day"] : ""
-            }`}
+            } ${number.events ? classes["there-are-events"] : ""}`}
             onClick={openBtnHandler}
           >
             {number.day}

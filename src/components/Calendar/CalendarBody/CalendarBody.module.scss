@@ -24,12 +24,25 @@
       width: calc(100% / 7);
       padding: 5% 0;
       border-bottom: 1px solid $border-color;
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: flex-end;
       cursor: pointer;
     }
 
     .current-day {
       background-color: $background-dark;
       font-weight: 800;
+    }
+
+    .there-are-events {
+      padding: 5% 0 0 0;
+    }
+
+    .there-are-events::before {
+      content: '\25CF';
+      font-size: 0.2em;
+      color: #E79C25;
     }
   }
 }
