@@ -96,10 +96,10 @@ const Calendar = () => {
     <Fragment>
       {isOpen && (
         <Modal
-          onDataToCalendar={closeModalHandler}
-          selectedDate={selectedDate}
-          onEventDataToCalendar={eventDataHandler}
           events={events}
+          selectedDate={selectedDate}
+          onDataToCalendar={closeModalHandler}
+          onEventDataToCalendar={eventDataHandler}
         />
       )}
       <div className={classes.calendar}>

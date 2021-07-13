@@ -8,6 +8,8 @@ import Button from "../Button/Button";
 const Modal = (props) => {
   const { selectedDate, events } = props;
 
+  const filteredEvents = events.filter((event) => event.date === selectedDate);
+
   // Hide the modal when the "Close" button is clicked
   const closeModalHandler = () => {
     let close = false;
@@ -83,15 +85,18 @@ const Modal = (props) => {
             </Button>
           )}
           <div className={classes["events"]}>
-            {events.length !== 0 && (
-              <ul className={classes["event-list"]}>
-                {events
-                  .filter((event) => event.date === selectedDate)
-                  .map((event) => (
+            {filteredEvents.length > 0 ? (
+              <Fragment>
+                <div>Events:</div>
+                <ul className={classes["event-list"]}>
+                  {filteredEvents.map((event) => (
                     <li key={event.id}>{event.name}</li>
                   ))}
-              </ul>
-              )}
+                </ul>
+              </Fragment>
+            ) : (
+              <p>You don't have any events today</p>
+            )}
           </div>
         </div>
       </div>

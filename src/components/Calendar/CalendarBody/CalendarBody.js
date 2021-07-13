@@ -2,19 +2,25 @@ import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import classes from "./CalendarBody.module.scss";
-import Button from "../../UI/Button/Button";
 
 const CalendarBody = (props) => {
-  const { daysInMonth, weekdays, emptyDays, day, month, year } = props;
+  const {
+    daysInMonth,
+    weekdays,
+    emptyDays,
+    day,
+    month,
+    year
+  } = props;
 
   const [daysArray, setDaysArray] = useState([]);
 
   useEffect(() => {
     let daysInMonthArray = [];
 
-    let totalArray = emptyDays + daysInMonth;
+    let totalDays = emptyDays + daysInMonth;
 
-    for (let arrayIndex = 1; arrayIndex <= totalArray; arrayIndex++) {
+    for (let arrayIndex = 1; arrayIndex <= totalDays; arrayIndex++) {
       // If the index of the array is greater than the number of empty days, the number of the day is displayed; otherwise nothing is displayed
       let dayNumber = arrayIndex - emptyDays;
       let currentDay = dayNumber === day;
@@ -23,13 +29,13 @@ const CalendarBody = (props) => {
         daysInMonthArray.push({
           id: uuidv4(),
           day: dayNumber,
-          currentDay: currentDay,
+          currentDay: currentDay
         });
       } else {
         daysInMonthArray.push({
           id: uuidv4(),
           day: "",
-          currentDay: currentDay,
+          currentDay: currentDay
         });
       }
     }
@@ -44,7 +50,7 @@ const CalendarBody = (props) => {
 
     // Sends the value to the parent component "Calendar"
     props.onDataToCalendar(open, selectDate);
-  }
+  };
 
   return (
     <div className={classes.calendar_body}>
@@ -55,8 +61,7 @@ const CalendarBody = (props) => {
       </ul>
       <div className={classes["month-days"]}>
         {daysArray.map((number) => (
-          <Button
-            type="button"
+          <div
             key={number.id}
             className={`${classes["number-day"]} ${
               number.currentDay ? classes["current-day"] : ""
@@ -64,7 +69,7 @@ const CalendarBody = (props) => {
             onClick={openBtnHandler}
           >
             {number.day}
-          </Button>
+          </div>
         ))}
       </div>
     </div>
