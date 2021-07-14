@@ -52,6 +52,12 @@ const Modal = (props) => {
     props.onEventDataToCalendar(eventData);
   };
 
+  const deleteHandler = (event) => {
+    let eventId = event.target.parentElement.id;
+
+    props.onDelete(eventId);
+  }
+
   // Show the backdrop
   const Backdrop = () => {
     return <div className={classes.backdrop} onClick={closeModalHandler}></div>;
@@ -107,7 +113,14 @@ const Modal = (props) => {
                 <div>Events:</div>
                 <ul className={classes["event-list"]}>
                   {filteredEvents.map((event) => (
-                    <li key={event.id}>{event.name}</li>
+                    <li key={event.id} id={event.id}>
+                      {event.name}
+                      <Button
+                        type="button"
+                        className={classes["btn-delete"]}
+                        onClick={deleteHandler}
+                      />
+                    </li>
                   ))}
                 </ul>
               </Fragment>

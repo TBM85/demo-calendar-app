@@ -92,6 +92,13 @@ const Calendar = () => {
     })
   }
 
+  const deleteEventHandler = (eventId) => {
+    setEvents(prevEvents => {
+      let updatedEvents = prevEvents.filter((event) => event.id !== eventId);
+      return updatedEvents;
+    })
+  }
+
   return (
     <Fragment>
       {isOpen && (
@@ -100,6 +107,7 @@ const Calendar = () => {
           selectedDate={selectedDate}
           onDataToCalendar={closeModalHandler}
           onEventDataToCalendar={eventDataHandler}
+          onDelete={deleteEventHandler}
         />
       )}
       <div className={classes.calendar}>

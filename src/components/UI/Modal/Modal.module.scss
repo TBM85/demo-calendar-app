@@ -134,6 +134,15 @@
           border-radius: 0.25em;
           padding: 0.5em;
           margin-bottom: 0.5em;
+
+          .btn-delete {
+            background-image: url("../../../assets/icons/cross.svg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            float: right;
+            margin: -0.5em;
+            padding: 1.2em;
+          }
         }
       }
     }
