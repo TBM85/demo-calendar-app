@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import PropTypes from 'prop-types';
 
 import classes from "./CalendarBody.module.scss";
 
@@ -85,3 +86,15 @@ const CalendarBody = (props) => {
 };
 
 export default CalendarBody;
+
+CalendarBody.propTypes = {
+  daysArray: PropTypes.object,
+  daysInMonthArray: PropTypes.object,
+  totalDays: PropTypes.number,
+  dayNumber: PropTypes.number,
+  currentDay: PropTypes.bool,
+  dayString: PropTypes.string,
+  filterDate: PropTypes.object,
+  open: PropTypes.bool,
+  selectDate: PropTypes.string
+}

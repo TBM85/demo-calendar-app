@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from 'prop-types';
 
 import classes from "./CalendarHeader.module.scss";
 import Button from "../../UI/Button/Button";
@@ -40,3 +41,7 @@ const CalendarHeader = (props) => {
 };
 
 export default CalendarHeader;
+
+CalendarHeader.propTypes = {
+  dateInHeader: PropTypes.string
+}

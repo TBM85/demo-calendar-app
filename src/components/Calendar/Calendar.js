@@ -1,7 +1,8 @@
 import React, { Fragment, useEffect, useState } from "react";
-import Modal from "../UI/Modal/Modal";
+import PropTypes from 'prop-types';
 
 import classes from "./Calendar.module.scss";
+import Modal from "../UI/Modal/Modal";
 import CalendarBody from "./CalendarBody/CalendarBody";
 import CalendarHeader from "./CalendarHeader/CalendarHeader";
 
@@ -17,7 +18,7 @@ const weekdays = [
 
 const Calendar = () => {
   // Handle media queries
-  const [isBigDevice, setIsBigDevice] = useState("");
+  const [isBigDevice, setIsBigDevice] = useState();
   const [dateNav, setDateNav] = useState(0);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -73,7 +74,7 @@ const Calendar = () => {
     setDateNav(dateNav + 1);
   };
 
-  const [selectedDate, setSelectedDate] = useState();
+  const [selectedDate, setSelectedDate] = useState("");
   // Open Modal
   const openModalHandler = (open, selectDate) => {
     setIsOpen(open);
@@ -134,3 +135,19 @@ const Calendar = () => {
 };
 
 export default Calendar;
+
+Calendar.propTypes = {
+  isBigDevice: PropTypes.bool,
+  dateNav: PropTypes.number,
+  isOpen: PropTypes.bool,
+  date: PropTypes.object,
+  day: PropTypes.number,
+  month: PropTypes.number,
+  year: PropTypes.number,
+  daysInMonth: PropTypes.number,
+  firstDayOfMonth: PropTypes.object,
+  initialWeekday: PropTypes.string,
+  emptyDays: PropTypes.number,
+  selectedDatea: PropTypes.string,
+  events: PropTypes.object
+}

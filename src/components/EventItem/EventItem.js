@@ -1,6 +1,8 @@
 import React, { Fragment, useState } from "react";
-import Button from "../UI/Button/Button";
+import PropTypes from 'prop-types';
+
 import classes from "./EventItem.module.scss";
+import Button from "../UI/Button/Button";
 
 const EventItem = (props) => {
   const { event } = props;
@@ -60,3 +62,9 @@ const EventItem = (props) => {
 };
 
 export default EventItem;
+
+EventItem.propTypes = {
+  isEditing: PropTypes.bool,
+  eventId: PropTypes.number,
+  eventText: PropTypes.string
+}

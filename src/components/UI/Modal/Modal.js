@@ -1,6 +1,7 @@
 import React, { Fragment, useRef, useState } from "react";
 import reactDom from "react-dom";
 import { v4 as uuidv4 } from "uuid";
+import PropTypes from 'prop-types';
 
 import classes from "./Modal.module.scss";
 import Button from "../Button/Button";
@@ -142,3 +143,12 @@ const Modal = (props) => {
 };
 
 export default Modal;
+
+Modal.propTypes = {
+  filteredEvents: PropTypes.object,
+  close: PropTypes.bool,
+  isExpand: PropTypes.bool,
+  isValid: PropTypes.bool,
+  enteredEvent: PropTypes.string,
+  eventData: PropTypes.object
+}
