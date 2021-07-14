@@ -1,0 +1,27 @@
+@import "../../App";
+
+.event-item {
+  list-style: none;
+  border: 1px solid $border-color;
+  border-radius: 0.25em;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+
+  .btn-delete {
+    background-image: url("../../assets/icons/cross.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    float: right;
+    padding: 1.2em;
+    margin: -0.5em;
+  }
+
+  .btn-save {
+    background-image: url("../../assets/icons/checkmark.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    float: right;
+    padding: 1.2em;
+    margin: -0.5em;
+  }
+}

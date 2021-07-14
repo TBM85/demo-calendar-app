@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import classes from "./Modal.module.scss";
 import Button from "../Button/Button";
+import EventItem from "../../EventItem/EventItem";
 
 const Modal = (props) => {
   const { selectedDate, events } = props;
@@ -43,7 +44,7 @@ const Modal = (props) => {
 
     const eventData = {
       id: uuidv4(),
-      name: enteredEvent,
+      text: enteredEvent,
       date: selectedDate,
     };
 
@@ -52,11 +53,9 @@ const Modal = (props) => {
     props.onEventDataToCalendar(eventData);
   };
 
-  const deleteHandler = (event) => {
-    let eventId = event.target.parentElement.id;
-
+  const deleteHandler = (eventId) => {
     props.onDelete(eventId);
-  }
+  };
 
   // Show the backdrop
   const Backdrop = () => {
@@ -82,9 +81,7 @@ const Modal = (props) => {
                 ref={eventInput}
                 className={!isValid ? classes["invalid"] : classes["valid"]}
               />
-              {!isValid && (
-                <span>You need to enter text</span>
-              )}
+              {!isValid && <span>You need to enter text</span>}
               <div className={classes["buttons"]}>
                 <Button type="submit" className={classes["btn-add"]}>
                   Add Event
@@ -113,14 +110,11 @@ const Modal = (props) => {
                 <div>Events:</div>
                 <ul className={classes["event-list"]}>
                   {filteredEvents.map((event) => (
-                    <li key={event.id} id={event.id}>
-                      {event.name}
-                      <Button
-                        type="button"
-                        className={classes["btn-delete"]}
-                        onClick={deleteHandler}
-                      />
-                    </li>
+                    <EventItem
+                      key={event.id}
+                      event={event}
+                      onDelete={deleteHandler}
+                    />
                   ))}
                 </ul>
               </Fragment>
