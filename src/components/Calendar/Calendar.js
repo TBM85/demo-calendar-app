@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 import classes from "./Calendar.module.scss";
 import Modal from "../UI/Modal/Modal";
@@ -90,15 +90,24 @@ const Calendar = () => {
   const eventDataHandler = (eventData) => {
     setEvents((prevEvents) => {
       return [eventData, ...prevEvents];
-    })
-  }
+    });
+  };
 
   const deleteEventHandler = (eventId) => {
-    setEvents(prevEvents => {
+    setEvents((prevEvents) => {
       let updatedEvents = prevEvents.filter((event) => event.id !== eventId);
       return updatedEvents;
-    })
-  }
+    });
+  };
+
+  const updateEventHandler = (eventItem, eventIdItem) => {
+    setEvents((prevEvents) => {
+      let updatedEvents = prevEvents.filter(
+        (event) => event.id !== eventIdItem
+      );
+      return [eventItem, ...updatedEvents];
+    });
+  };
 
   return (
     <Fragment>
@@ -109,6 +118,7 @@ const Calendar = () => {
           onDataToCalendar={closeModalHandler}
           onEventDataToCalendar={eventDataHandler}
           onDelete={deleteEventHandler}
+          onEdit={updateEventHandler}
         />
       )}
       <div className={classes.calendar}>
@@ -149,5 +159,5 @@ Calendar.propTypes = {
   initialWeekday: PropTypes.string,
   emptyDays: PropTypes.number,
   selectedDatea: PropTypes.string,
-  events: PropTypes.object
-}
+  events: PropTypes.object,
+};

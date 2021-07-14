@@ -19,15 +19,24 @@ const EventItem = (props) => {
     setEditing(true);
   };
 
+  const [eventItem, setEventItem] = useState(event);
   const [eventText, setEventText] = useState(event.text);
-  const editEventHandler = (event) => {
-    setEventText(event.target.value);
+  const editEventHandler = (e) => {
+    setEventText(e.target.value);
+
+    setEventItem(() => ({
+      id: event.id,
+      text: eventText,
+      date: event.date
+    }))
   };
 
   const endEditHandler = () => {
     setEditing(false);
 
-    console.log(eventText);
+    let eventIdItem = event.id;
+
+    props.onEdit(eventItem, eventIdItem);
   };
 
   return (
@@ -66,5 +75,7 @@ export default EventItem;
 EventItem.propTypes = {
   isEditing: PropTypes.bool,
   eventId: PropTypes.number,
+  eventIdItem: PropTypes.number,
+  eventItem: PropTypes.object,
   eventText: PropTypes.string
 }

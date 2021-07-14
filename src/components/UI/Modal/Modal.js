@@ -58,6 +58,10 @@ const Modal = (props) => {
     props.onDelete(eventId);
   };
 
+  const editHandler = (eventItem, eventIdItem) => {
+    props.onEdit(eventItem, eventIdItem);
+  }
+
   // Show the backdrop
   const Backdrop = () => {
     return <div className={classes.backdrop} onClick={closeModalHandler}></div>;
@@ -115,6 +119,7 @@ const Modal = (props) => {
                       key={event.id}
                       event={event}
                       onDelete={deleteHandler}
+                      onEdit={editHandler}
                     />
                   ))}
                 </ul>
