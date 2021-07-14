@@ -43,6 +43,7 @@ const EventItem = (props) => {
         <Fragment>
           <input
             type="text"
+            className={classes["event-input"]}
             defaultValue={eventText}
             onChange={editEventHandler}
             autoFocus
