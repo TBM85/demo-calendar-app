@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 import classes from "./EventItem.module.scss";
 import Button from "../UI/Button/Button";
@@ -27,8 +27,8 @@ const EventItem = (props) => {
     setEventItem(() => ({
       id: event.id,
       text: eventText,
-      date: event.date
-    }))
+      date: event.date,
+    }));
   };
 
   const endEditHandler = () => {
@@ -40,7 +40,12 @@ const EventItem = (props) => {
   };
 
   return (
-    <li id={event.id} className={classes["event-item"]}>
+    <li
+      id={event.id}
+      className={`${classes["event-item"]} ${
+        !isEditing ? classes["event-item-padding"] : ""
+      }`}
+    >
       {!isEditing ? (
         <Fragment>
           <span onDoubleClick={startEditHandle}>{eventText}</span>
@@ -77,5 +82,5 @@ EventItem.propTypes = {
   eventId: PropTypes.number,
   eventIdItem: PropTypes.number,
   eventItem: PropTypes.object,
-  eventText: PropTypes.string
-}
+  eventText: PropTypes.string,
+};

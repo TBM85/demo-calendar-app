@@ -1,16 +1,21 @@
 @import "../../App";
 
+.event-item-padding {
+  padding: 0.5em;
+}
+
 .event-item {
   list-style: none;
   border: 1px solid $border-color;
   border-radius: 0.25em;
-  padding: 0.5em;
   margin-bottom: 0.5em;
 
   .event-input {
     border: none;
     font-size: 1em;
     color: $primary-color;
+    border-radius: 0.25em;
+    padding: 0.5em;
   }
 
   .btn-delete {
@@ -28,6 +33,5 @@
     background-size: cover;
     float: right;
     padding: 1.2em;
-    margin: -0.5em;
   }
 }
