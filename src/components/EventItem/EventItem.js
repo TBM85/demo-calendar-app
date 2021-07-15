@@ -48,7 +48,7 @@ const EventItem = (props) => {
     >
       {!isEditing ? (
         <Fragment>
-          <span onDoubleClick={startEditHandle}>{eventText}</span>
+          <span onClick={startEditHandle}>{eventText}</span>
           <Button
             type="button"
             className={classes["btn-delete"]}
