@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 import classes from "./CalendarBody.module.scss";
 
@@ -13,7 +13,7 @@ const CalendarBody = (props) => {
     month,
     year,
     events,
-    selectedDate
+    selectedDate,
   } = props;
 
   const [daysArray, setDaysArray] = useState([]);
@@ -37,16 +37,18 @@ const CalendarBody = (props) => {
           id: uuidv4(),
           day: dayNumber,
           currentDay: currentDay,
-          events: filterDate.length > 0
+          events: filterDate.length > 0,
         });
       } else {
         daysInMonthArray.push({
           id: uuidv4(),
           day: "",
-          currentDay: currentDay,
-          events: filterDate.length > 0,
+          currentDay: null,
+          events: null,
         });
       }
+
+      console.log(daysInMonthArray);
     }
 
     setDaysArray(daysInMonthArray);
@@ -73,9 +75,11 @@ const CalendarBody = (props) => {
           <div
             key={number.id}
             className={`${classes["number-day"]} ${
-              number.currentDay ? classes["current-day"] : ""
-            } ${number.events ? classes["there-are-events"] : ""}`}
-            onClick={openBtnHandler}
+              number.currentDay !== null ? classes["no-empty-days"] : ""
+            } ${number.currentDay ? classes["current-day"] : ""} ${
+              number.events ? classes["there-are-events"] : ""
+            }`}
+            onClick={number.currentDay !== null ? openBtnHandler : null}
           >
             {number.day}
           </div>
@@ -96,5 +100,5 @@ CalendarBody.propTypes = {
   dayString: PropTypes.string,
   filterDate: PropTypes.object,
   open: PropTypes.bool,
-  selectDate: PropTypes.string
-}
+  selectDate: PropTypes.string,
+};
