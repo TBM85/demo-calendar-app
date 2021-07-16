@@ -10,6 +10,7 @@ import EventItem from "../../EventItem/EventItem";
 const Modal = (props) => {
   const { selectedDate, events } = props;
 
+  // Filter all events that contain the selected date
   const filteredEvents = events.filter((event) => event.date === selectedDate);
 
   // Hide the modal when the "Close" button is clicked
@@ -21,23 +22,27 @@ const Modal = (props) => {
   };
 
   const [isExpand, setIsExpand] = useState(false);
+
+  // Clicking the "Add Event" button expands the form
   const expandFormHandler = () => {
     setIsExpand(true);
   };
 
+  // Clicking the "Cancel" button collapses the form
   const contractFormHandler = () => {
     setIsExpand(false);
   };
 
   const eventInput = useRef();
-
   const [isValid, setIsValid] = useState(true);
 
+  // Add a new event
   const submitHandler = (event) => {
     event.preventDefault();
 
     const enteredEvent = eventInput.current.value;
 
+    // If the input is empty, the "Add Event" button will not work and a new event will not be added
     if (enteredEvent.trim().length === 0) {
       setIsValid(false);
       return;
@@ -51,14 +56,17 @@ const Modal = (props) => {
 
     setIsValid(true);
 
+    // Sends the value to the parent component "Calendar"
     props.onEventDataToCalendar(eventData);
   };
 
   const deleteHandler = (eventId) => {
+    // Sends the value to the parent component "Calendar"
     props.onDelete(eventId);
   };
 
   const editHandler = (eventItem, eventIdItem) => {
+    // Sends the values to the parent component "Calendar"
     props.onEdit(eventItem, eventIdItem);
   }
 

@@ -12,9 +12,11 @@ const EventItem = (props) => {
   const deleteHandler = (event) => {
     let eventId = event.target.parentElement.id;
 
+    // Sends the value to the parent component "Modal"
     props.onDelete(eventId);
   };
 
+  // When an event is clicked, the edit mode opens
   const startEditHandle = () => {
     setEditing(true);
   };
@@ -24,6 +26,7 @@ const EventItem = (props) => {
   const editEventHandler = (e) => {
     setEventText(e.target.value);
 
+    // The changes contained in the edited event
     setEventItem(() => ({
       id: event.id,
       text: eventText,
@@ -31,11 +34,13 @@ const EventItem = (props) => {
     }));
   };
 
+  // When the check mark button is clicked, the edit mode is closed
   const endEditHandler = () => {
     setEditing(false);
 
     let eventIdItem = event.id;
 
+    // Sends the values to the parent component "Modal"
     props.onEdit(eventItem, eventIdItem);
   };
 

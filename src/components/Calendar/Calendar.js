@@ -23,6 +23,7 @@ const Calendar = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  // Switch between screen sizes
   const changeDevicesHandler = (bigDevice) => {
     setIsBigDevice(bigDevice.matches);
   };
@@ -86,6 +87,7 @@ const Calendar = () => {
     setIsOpen(close);
   };
 
+  // It includes each new event in the event array
   const [events, setEvents] = useState([]);
   const eventDataHandler = (eventData) => {
     setEvents((prevEvents) => {
@@ -93,6 +95,7 @@ const Calendar = () => {
     });
   };
 
+  // It deletes the event that matches the selected id
   const deleteEventHandler = (eventId) => {
     setEvents((prevEvents) => {
       let updatedEvents = prevEvents.filter((event) => event.id !== eventId);
@@ -100,6 +103,7 @@ const Calendar = () => {
     });
   };
 
+  // It updates edited events
   const updateEventHandler = (eventItem, eventIdItem) => {
     setEvents((prevEvents) => {
       let updatedEvents = prevEvents.filter(

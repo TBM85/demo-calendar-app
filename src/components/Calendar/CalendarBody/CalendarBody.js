@@ -54,7 +54,8 @@ const CalendarBody = (props) => {
     setDaysArray(daysInMonthArray);
   }, [day, daysInMonth, emptyDays, events, month, selectedDate, year]);
 
-  const openBtnHandler = (event) => {
+  // When any day is clicked, a modal opens
+  const openModalHandler = (event) => {
     let open = true;
 
     let selectDate = `${month + 1}/${event.target.outerText}/${year}`;
@@ -79,7 +80,7 @@ const CalendarBody = (props) => {
             } ${number.currentDay ? classes["current-day"] : ""} ${
               number.events ? classes["there-are-events"] : ""
             }`}
-            onClick={number.currentDay !== null ? openBtnHandler : null}
+            onClick={number.currentDay !== null ? openModalHandler : null}
           >
             {number.day}
           </div>
