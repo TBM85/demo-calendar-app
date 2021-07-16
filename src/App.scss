@@ -3,7 +3,7 @@
 // COLORS
 $border-color: #BFCFDF;
 $background-light: #fff;
-$background-dark: #93B6D5;
+$background-dark: #BFCFDF;
 $primary-color: #394855;
 $secondary-color: #1f282f;
 
@@ -14,4 +14,11 @@ $secondary-color: #1f282f;
   h1 {
     margin-bottom: 0;
   }
+}
+
+@mixin btn-icon {
+  background-repeat: no-repeat;
+  background-size: cover;
+  float: right;
+  padding: 1.2em;
 }

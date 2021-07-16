@@ -112,7 +112,7 @@ const Modal = (props) => {
           <div className={classes["events"]}>
             {filteredEvents.length > 0 ? (
               <Fragment>
-                <div>Events:</div>
+                <div>Events for today:</div>
                 <ul className={classes["event-list"]}>
                   {filteredEvents.map((event) => (
                     <EventItem

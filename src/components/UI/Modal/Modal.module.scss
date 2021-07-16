@@ -58,17 +58,15 @@
 
     .btn-close {
       background-image: url("../../../assets/icons/cross.svg");
-      background-repeat: no-repeat;
-      background-size: cover;
-      float: right;
-      padding: 1.2em;
       margin: -0.8em;
+      @include btn-icon;
     }
 
     .btn-add,
     .btn-cancel {
+      background-color: $background-dark;
+      color: $secondary-color;
       font-size: 1em;
-      color: $primary-color;
       border: 1px solid $border-color;
       border-radius: 0.25em;
       padding: 0.5em 1em;

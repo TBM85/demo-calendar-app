@@ -20,18 +20,12 @@
 
   .btn-delete {
     background-image: url("../../assets/icons/cross.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    float: right;
-    padding: 1.2em;
     margin: -0.5em;
+    @include btn-icon;
   }
 
   .btn-save {
     background-image: url("../../assets/icons/checkmark.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    float: right;
-    padding: 1.2em;
+    @include btn-icon;
   }
 }

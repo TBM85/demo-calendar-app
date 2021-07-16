@@ -1,3 +1,12 @@
+@import '../../../App.scss';
+
+@media (max-width: 575px) {
+  h2 {
+    font-size: 1.2em;
+    width: 50%;
+  }
+}
+
 .calendar_header {
   display: flex;
   justify-content: space-between;
@@ -9,11 +18,9 @@
 
   .calendar_buttons {
     button {
-      background-position: center;
-      background-size: cover;
-      width: 2em;
-      height: 2em;
       margin: 1em;
+      float: none !important;
+      @include btn-icon;
     }
 
     .btn-left {
