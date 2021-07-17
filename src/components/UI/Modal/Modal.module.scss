@@ -54,7 +54,7 @@
     background-color: $background-light;
     border-radius: 0.25em;
     text-align: center;
-    padding: 1em;
+    padding: 1em 1em 1.5em;
 
     .btn-close {
       background-image: url("../../../assets/icons/cross.svg");
@@ -92,16 +92,15 @@
       }
 
       .valid {
-        border: 1px solid $border-color;
+        @include valid;
       }
-
+      
       .invalid {
-        border: 1px solid red;
+        @include invalid;
       }
 
-      span {
-        color: red;
-        text-align: right;
+      .red-text {
+        @include red-text;
       }
 
       .buttons {
@@ -121,6 +120,10 @@
     .events {
       margin: 1.5em 0.8em 0;
       text-align: left;
+
+      .events-title {
+        margin-bottom: -0.25em;
+      }
 
       ul {
         margin: 0.25em 0 0 0;

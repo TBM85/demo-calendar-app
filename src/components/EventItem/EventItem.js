@@ -34,8 +34,16 @@ const EventItem = (props) => {
     }));
   };
 
+  const [isValid, setIsValid] = useState(true);
   // When the check mark button is clicked, the edit mode is closed
   const endEditHandler = () => {
+    // If the input edit is empty, the edit mode is not closed
+    if (eventText.trim().length === 0) {
+      setEditing(true);
+      setIsValid(false);
+      return;
+    }
+
     setEditing(false);
 
     let eventIdItem = event.id;
@@ -45,38 +53,43 @@ const EventItem = (props) => {
   };
 
   return (
-    <li
-      id={event.id}
-      className={`${classes["event-item"]} ${
-        !isEditing ? classes["event-item-padding"] : ""
-      }`}
-    >
-      {!isEditing ? (
-        <Fragment>
-          <span onClick={startEditHandle}>{eventText}</span>
-          <Button
-            type="button"
-            className={classes["btn-delete"]}
-            onClick={deleteHandler}
-          />
-        </Fragment>
-      ) : (
-        <Fragment>
-          <input
-            type="text"
-            className={classes["event-input"]}
-            defaultValue={eventText}
-            onChange={editEventHandler}
-            autoFocus
-          />
-          <Button
-            type="button"
-            className={classes["btn-save"]}
-            onClick={endEditHandler}
-          />
-        </Fragment>
+    <Fragment>
+      <li
+        id={event.id}
+        className={`${classes["event-item"]} ${
+          !isEditing ? classes["event-item-padding"] : ""
+        } ${!isValid ? classes["invalid"] : classes["valid"]}`}
+      >
+        {!isEditing ? (
+          <Fragment>
+            <span onClick={startEditHandle}>{eventText}</span>
+            <Button
+              type="button"
+              className={classes["btn-delete"]}
+              onClick={deleteHandler}
+            />
+          </Fragment>
+        ) : (
+          <Fragment>
+            <input
+              type="text"
+              className={classes["event-input"]}
+              defaultValue={eventText}
+              onChange={editEventHandler}
+              autoFocus
+            />
+            <Button
+              type="button"
+              className={classes["btn-save"]}
+              onClick={endEditHandler}
+            />
+          </Fragment>
+        )}
+      </li>
+      {!isValid && (
+        <span className={classes["red-text"]}>You need to enter text</span>
       )}
-    </li>
+    </Fragment>
   );
 };
 
@@ -88,4 +101,5 @@ EventItem.propTypes = {
   eventIdItem: PropTypes.number,
   eventItem: PropTypes.object,
   eventText: PropTypes.string,
+  isValid: PropTypes.bool,
 };

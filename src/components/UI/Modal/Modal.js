@@ -1,7 +1,7 @@
 import React, { Fragment, useRef, useState } from "react";
 import reactDom from "react-dom";
 import { v4 as uuidv4 } from "uuid";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 import classes from "./Modal.module.scss";
 import Button from "../Button/Button";
@@ -68,7 +68,7 @@ const Modal = (props) => {
   const editHandler = (eventItem, eventIdItem) => {
     // Sends the values to the parent component "Calendar"
     props.onEdit(eventItem, eventIdItem);
-  }
+  };
 
   // Show the backdrop
   const Backdrop = () => {
@@ -93,8 +93,13 @@ const Modal = (props) => {
                 type="text"
                 ref={eventInput}
                 className={!isValid ? classes["invalid"] : classes["valid"]}
+                autoFocus
               />
-              {!isValid && <span>You need to enter text</span>}
+              {!isValid && (
+                <span className={classes["red-text"]}>
+                  You need to enter text
+                </span>
+              )}
               <div className={classes["buttons"]}>
                 <Button type="submit" className={classes["btn-add"]}>
                   Add Event
@@ -120,7 +125,7 @@ const Modal = (props) => {
           <div className={classes["events"]}>
             {filteredEvents.length > 0 ? (
               <Fragment>
-                <div>Events for today:</div>
+                <div className={classes["events-title"]}>Events for today:</div>
                 <ul className={classes["event-list"]}>
                   {filteredEvents.map((event) => (
                     <EventItem
@@ -163,5 +168,5 @@ Modal.propTypes = {
   isExpand: PropTypes.bool,
   isValid: PropTypes.bool,
   enteredEvent: PropTypes.string,
-  eventData: PropTypes.object
-}
+  eventData: PropTypes.object,
+};

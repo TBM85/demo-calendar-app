@@ -22,3 +22,17 @@ $secondary-color: #1f282f;
   float: right;
   padding: 1.2em;
 }
+
+@mixin red-text {
+  color: red;
+  display: flex;
+  justify-content: flex-end;
+}
+
+@mixin valid {
+  border: 1px solid $border-color;
+}
+
+@mixin invalid {
+  border: 1px solid red;
+}
