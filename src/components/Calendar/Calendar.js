@@ -5,23 +5,23 @@ import classes from "./Calendar.module.scss";
 import Modal from "../UI/Modal/Modal";
 import CalendarBody from "./CalendarBody/CalendarBody";
 import CalendarHeader from "./CalendarHeader/CalendarHeader";
-
-const weekdays = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
-];
+import useDate from "../../hooks/useDate";
 
 const Calendar = () => {
+  const {
+    weekdays,
+    date,
+    day,
+    month,
+    year,
+    daysInMonth,
+    emptyDays,
+    backMonthHandler,
+    nextMonthHandler
+  } = useDate();
+
   // Handle media queries
   const [isBigDevice, setIsBigDevice] = useState();
-  const [dateNav, setDateNav] = useState(0);
-
-  const [isOpen, setIsOpen] = useState(false);
 
   // Switch between screen sizes
   const changeDevicesHandler = (bigDevice) => {
@@ -38,44 +38,10 @@ const Calendar = () => {
     };
   }, []);
 
-  // Create an instance of a date object
-  let date = new Date();
-
-  if (dateNav !== 0) {
-    date.setMonth(date.getMonth() + dateNav);
-  }
-
-  let day = date.getDate();
-  let month = date.getMonth();
-  let year = date.getFullYear();
-
-  // Get the last day of the month
-  let daysInMonth = new Date(year, month + 1, 0).getDate();
-
-  // Get the first day of the month
-  let firstDayOfMonth = new Date(year, month, 1);
-
-  // The day of the week of the first day of the month
-  const initialWeekday = firstDayOfMonth.toLocaleDateString("en-us", {
-    weekday: "long",
-  });
-
-  // The number of empty days before the first day of the month
-  const emptyDays = weekdays.indexOf(initialWeekday.split(", ")[0]);
-
-  // Decreases the value of the navigation date by one
-  // when clicking on the left arrow
-  const backMonthHandler = () => {
-    setDateNav(dateNav - 1);
-  };
-
-  // Increase the value of the navigation date by one
-  // when clicking the right arrow
-  const nextMonthHandler = () => {
-    setDateNav(dateNav + 1);
-  };
+  const [isOpen, setIsOpen] = useState(false);
 
   const [selectedDate, setSelectedDate] = useState("");
+
   // Open Modal
   const openModalHandler = (open, selectDate) => {
     setIsOpen(open);
