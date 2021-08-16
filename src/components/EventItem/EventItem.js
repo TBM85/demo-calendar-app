@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 import classes from "./EventItem.module.scss";
@@ -23,16 +23,19 @@ const EventItem = (props) => {
 
   const [eventItem, setEventItem] = useState(event);
   const [eventText, setEventText] = useState(event.text);
+
   const editEventHandler = (e) => {
     setEventText(e.target.value);
+  };
 
+  useEffect(() => {
     // The changes contained in the edited event
     setEventItem(() => ({
       id: event.id,
       text: eventText,
       date: event.date,
     }));
-  };
+  }, [event.date, event.id, eventText]);
 
   const [isValid, setIsValid] = useState(true);
   // When the check mark button is clicked, the edit mode is closed
