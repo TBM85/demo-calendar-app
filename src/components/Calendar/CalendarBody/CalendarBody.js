@@ -47,8 +47,6 @@ const CalendarBody = (props) => {
           events: null,
         });
       }
-
-      console.log(daysInMonthArray);
     }
 
     setDaysArray(daysInMonthArray);

@@ -1,5 +1,16 @@
 @import "../../../App";
 
+@media (max-width: 575px) {
+  .there-are-events::before {
+    font-size: 0.6em;
+  }
+}
+@media (min-width: 576px) {
+  .there-are-events::before {
+    font-size: 0.2em;
+  }
+}
+
 .calendar_body {
   .week-days {
     display: flex;
@@ -47,7 +58,6 @@
 
     .there-are-events::before {
       content: '\25CF';
-      font-size: 0.2em;
       color: #E79C25;
     }
   }
