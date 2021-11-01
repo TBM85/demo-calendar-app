@@ -31,14 +31,7 @@
 }
 
 .backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
   z-index: 1;
-  background: $primary-color;
-  opacity: 0.75;
 }
 
 .modal {
@@ -51,11 +44,6 @@
   color: $primary-color;
 
   .modal_content {
-    background-color: $background-light;
-    border-radius: 0.25em;
-    text-align: center;
-    padding: 1em 1em 1.5em;
-
     .btn-close {
       background-image: url("../../../assets/icons/cross.svg");
       margin: -0.8em;

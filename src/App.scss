@@ -17,6 +17,7 @@ $event-color: #E79C25;
   }
 }
 
+// MIXINS 
 @mixin btn-icon {
   background-repeat: no-repeat;
   background-size: cover;
@@ -36,4 +37,15 @@ $event-color: #E79C25;
 
 @mixin invalid {
   border: 1px solid red;
+}
+
+// BACKDROP
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: $primary-color;
+  opacity: 0.75;
 }

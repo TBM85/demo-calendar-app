@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import reactDom from "react-dom";
+import Card from "../Card/Card";
 
 import classes from "./Popup.module.scss";
 
@@ -12,9 +13,9 @@ const Popup = (props) => {
   const PopupOverlay = () => {
     return (props.trigger ? 
       <div className={classes.popup}>
-        <div className={classes.popup_inner}>
+        <Card>
           {props.children}
-        </div>
+        </Card>
       </div> : ""
     );
   };
