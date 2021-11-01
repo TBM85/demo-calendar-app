@@ -6,9 +6,17 @@ import Button from "../Button/Button";
 import classes from "./Popup.module.scss";
 
 const Popup = (props) => {
+  // Hide the popup when the "Close" button is clicked
+  const closePopupHandler = () => {
+    let closePopup = false;
+
+    // Sends the value to the parent component "EventItem"
+    props.onDataToEventItem(closePopup);
+  };
+
   // Show the backdrop
   const Backdrop = () => {
-    return <div className={classes.backdrop}></div>;
+    return <div className={classes.backdrop} onClick={closePopupHandler}></div>;
   };
 
   // Show the popup over the backdrop
@@ -22,7 +30,11 @@ const Popup = (props) => {
             <Button type="button" className={classes["btn-remove"]}>
               Remove
             </Button>
-            <Button type="button" className={classes["btn-cancel"]}>
+            <Button
+              type="button"
+              className={classes["btn-cancel"]}
+              onClick={closePopupHandler}
+            >
               Cancel
             </Button>
           </div>

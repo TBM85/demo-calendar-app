@@ -54,6 +54,11 @@ const EventItem = (props) => {
     setIsPopupOpen(true);
   };
 
+  // Close Popup
+  const closePopupHandler = (closePopup) => {
+    setIsPopupOpen(closePopup);
+  };
+
   useEffect(() => {
     // The changes contained in the edited event
     setEventItem(() => ({
@@ -83,6 +88,7 @@ const EventItem = (props) => {
               <Popup
                 trigger={isPopupOpen}
                 onDelete={deleteHandler}
+                onDataToEventItem={closePopupHandler}
               />
             )}
           </Fragment>

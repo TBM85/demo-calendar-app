@@ -5,15 +5,11 @@
 }
 
 .popup {
-  position: fixed;
-  top: 0;
-  left: 0;
+  color: #394855;
+  z-index: 4;
   width: 100%;
-  height: 100vh;
-  color: $primary-color;
   display: flex;
   justify-content: center;
-  align-items: center;
-  z-index: 4;
+  position: absolute;
 }
 
