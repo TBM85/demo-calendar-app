@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import classes from "./EventItem.module.scss";
 import Button from "../UI/Button/Button";
+import Popup from "../UI/Popup/Popup";
 
 const EventItem = (props) => {
   const { event } = props;
@@ -17,7 +18,7 @@ const EventItem = (props) => {
   };
 
   // When an event is clicked, the edit mode opens
-  const startEditHandle = () => {
+  const startEditHandler = () => {
     setEditing(true);
   };
 
@@ -26,6 +27,11 @@ const EventItem = (props) => {
 
   const editEventHandler = (e) => {
     setEventText(e.target.value);
+  };
+
+  const [isPopup, setIsPopup] = useState(false);
+  const openPopupHandler = () => {
+    setIsPopup(true);
   };
 
   useEffect(() => {
@@ -65,12 +71,21 @@ const EventItem = (props) => {
       >
         {!isEditing ? (
           <Fragment>
-            <span onClick={startEditHandle}>{eventText}</span>
+            <span onClick={startEditHandler}>{eventText}</span>
             <Button
               type="button"
               className={classes["btn-delete"]}
-              onClick={deleteHandler}
+              onClick={openPopupHandler}
             />
+            {isPopup && (
+              <Popup
+                trigger={isPopup}
+                onDelete={deleteHandler}
+              >
+                <h3>Are you sure?</h3>
+                <p>Once deleted, you won't be able to recover this event</p>
+              </Popup>
+            )}
           </Fragment>
         ) : (
           <Fragment>

@@ -24,7 +24,7 @@
       list-style: none;
       padding: 0.5em;
       width: calc(100% / 7);
-      background: $border-color;
+      background:  $background-dark;
       font-weight: 700;
     }
   }
@@ -36,7 +36,7 @@
     .number-day {
       width: calc(100% / 7);
       padding: 5% 0;
-      border-bottom: 1px solid $border-color;
+      border-bottom: 1px solid $background-dark;
       display: flex;
       flex-direction: column-reverse;
       justify-content: flex-end;
@@ -58,7 +58,7 @@
 
     .there-are-events::before {
       content: '\25CF';
-      color: #E79C25;
+      color: $event-color;
     }
   }
 }
