@@ -49,3 +49,30 @@ $event-color: #E79C25;
   background: $primary-color;
   opacity: 0.75;
 }
+
+// BUTTONS
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1em;
+}
+
+button {
+  max-width: fit-content;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0.25em;
+}
+
+.btn-add,
+.btn-remove,
+.btn-cancel {
+  background-color: $background-dark !important;
+  color: $secondary-color;
+  font-size: 1em;
+  border: 1px solid $border-color !important;
+  border-radius: 0.25em;
+  padding: 0.5em 1em;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}

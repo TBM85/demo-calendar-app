@@ -29,20 +29,6 @@ const EventItem = (props) => {
     setEventText(e.target.value);
   };
 
-  const [isPopup, setIsPopup] = useState(false);
-  const openPopupHandler = () => {
-    setIsPopup(true);
-  };
-
-  useEffect(() => {
-    // The changes contained in the edited event
-    setEventItem(() => ({
-      id: event.id,
-      text: eventText,
-      date: event.date,
-    }));
-  }, [event.date, event.id, eventText]);
-
   const [isValid, setIsValid] = useState(true);
   // When the check mark button is clicked, the edit mode is closed
   const endEditHandler = () => {
@@ -61,6 +47,22 @@ const EventItem = (props) => {
     props.onEdit(eventItem, eventIdItem);
   };
 
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  // Open Popup
+  const openPopupHandler = () => {
+    setIsPopupOpen(true);
+  };
+
+  useEffect(() => {
+    // The changes contained in the edited event
+    setEventItem(() => ({
+      id: event.id,
+      text: eventText,
+      date: event.date,
+    }));
+  }, [event.date, event.id, eventText]);
+
   return (
     <Fragment>
       <li
@@ -77,14 +79,11 @@ const EventItem = (props) => {
               className={classes["btn-delete"]}
               onClick={openPopupHandler}
             />
-            {isPopup && (
+            {isPopupOpen && (
               <Popup
-                trigger={isPopup}
+                trigger={isPopupOpen}
                 onDelete={deleteHandler}
-              >
-                <h3>Are you sure?</h3>
-                <p>Once deleted, you won't be able to recover this event</p>
-              </Popup>
+              />
             )}
           </Fragment>
         ) : (

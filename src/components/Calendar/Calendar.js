@@ -38,19 +38,19 @@ const Calendar = () => {
     };
   }, []);
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [selectedDate, setSelectedDate] = useState("");
 
   // Open Modal
   const openModalHandler = (open, selectDate) => {
-    setIsOpen(open);
+    setIsModalOpen(open);
     setSelectedDate(selectDate);
   };
 
   // Close Modal
   const closeModalHandler = (close) => {
-    setIsOpen(close);
+    setIsModalOpen(close);
   };
 
   // It includes each new event in the event array
@@ -81,7 +81,7 @@ const Calendar = () => {
 
   return (
     <Fragment>
-      {isOpen && (
+      {isModalOpen && (
         <Modal
           events={events}
           selectedDate={selectedDate}
@@ -119,7 +119,7 @@ export default Calendar;
 Calendar.propTypes = {
   isBigDevice: PropTypes.bool,
   dateNav: PropTypes.number,
-  isOpen: PropTypes.bool,
+  isModalOpen: PropTypes.bool,
   date: PropTypes.object,
   day: PropTypes.number,
   month: PropTypes.number,
