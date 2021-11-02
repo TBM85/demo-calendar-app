@@ -8,14 +8,14 @@ import Popup from "../UI/Popup/Popup";
 const EventItem = (props) => {
   const { event } = props;
 
-  const [isEditing, setEditing] = useState(false);
-
-  const deleteHandler = (event) => {
-    let eventId = event.target.parentElement.id;
+  const deleteHandler = (eventItem) => {
+    let eventId = eventItem.id;
 
     // Sends the value to the parent component "Modal"
     props.onDelete(eventId);
   };
+
+  const [isEditing, setEditing] = useState(false);
 
   // When an event is clicked, the edit mode opens
   const startEditHandler = () => {
@@ -86,9 +86,9 @@ const EventItem = (props) => {
             />
             {isPopupOpen && (
               <Popup
-                trigger={isPopupOpen}
-                onDelete={deleteHandler}
                 onDataToEventItem={closePopupHandler}
+                onDelete={deleteHandler}
+                eventItem={eventItem}
               />
             )}
           </Fragment>

@@ -13,6 +13,13 @@ const Popup = (props) => {
     // Sends the value to the parent component "EventItem"
     props.onDataToEventItem(closePopup);
   };
+  
+  const deleteEventHandler = () => {
+    let eventItem = props.eventItem;
+
+    // Sends the value to the parent component "EventItem"
+    props.onDelete(eventItem);
+  }
 
   // Show the backdrop
   const Backdrop = () => {
@@ -21,13 +28,17 @@ const Popup = (props) => {
 
   // Show the popup over the backdrop
   const PopupOverlay = () => {
-    return (props.trigger ? (
+    return (
       <div className={classes.popup}>
         <Card>
           <h3>Are you sure?</h3>
           <p>Once deleted, you won't be able to recover this event</p>
           <div className={classes["buttons"]}>
-            <Button type="button" className={classes["btn-remove"]}>
+            <Button 
+              type="button" 
+              className={classes["btn-remove"]}
+              onClick={deleteEventHandler}
+            >
               Remove
             </Button>
             <Button
@@ -40,9 +51,7 @@ const Popup = (props) => {
           </div>
         </Card>
       </div>
-    ) : (
-      ""
-    ));
+    );
   };
 
   return (
