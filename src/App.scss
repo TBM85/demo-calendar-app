@@ -4,6 +4,7 @@
 $border-color: #82909d;
 $background-light: #fff;
 $background-dark: #BFCFDF;
+$background-current-day: #eee;
 $primary-color: #394855;
 $secondary-color: #1f282f;
 $event-color: #E79C25;
@@ -40,6 +41,19 @@ $event-color: #E79C25;
   border: 1px solid red;
 }
 
+// MEDIA QUERIES 
+@media (max-width: 575px) {
+  .buttons {
+    justify-content: center;
+  }
+}
+
+@media (min-width: 576px) {
+  .buttons {
+    justify-content: flex-end;
+  }
+}
+
 // BACKDROP
 .backdrop {
   position: fixed;
@@ -54,7 +68,6 @@ $event-color: #E79C25;
 // BUTTONS
 .buttons {
   display: flex;
-  justify-content: flex-end;
   margin-top: 1em;
 }
 

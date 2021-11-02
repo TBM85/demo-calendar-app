@@ -22,6 +22,9 @@ const Modal = (props) => {
     props.onDataToCalendar(close);
   };
 
+
+  const eventInput = useRef();
+  const [isValid, setIsValid] = useState(true);
   const [isExpand, setIsExpand] = useState(false);
 
   // Clicking the "Add Event" button expands the form
@@ -32,10 +35,8 @@ const Modal = (props) => {
   // Clicking the "Cancel" button collapses the form
   const contractFormHandler = () => {
     setIsExpand(false);
+    setIsValid(true);
   };
-
-  const eventInput = useRef();
-  const [isValid, setIsValid] = useState(true);
 
   // Add a new event
   const submitHandler = (event) => {

@@ -30,7 +30,7 @@ const Popup = (props) => {
   const PopupOverlay = () => {
     return (
       <div className={classes.popup}>
-        <Card>
+        <Card className={classes.popup_card}>
           <h3>Are you sure?</h3>
           <p>Once deleted, you won't be able to recover this event</p>
           <div className={classes["buttons"]}>

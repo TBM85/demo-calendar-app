@@ -3,6 +3,17 @@
 @media (max-width: 575px) {
   .modal_content {
     width: 80%;
+    .events {
+      text-align: center;
+    }
+  }
+}
+
+@media (min-width: 576px) {
+  .modal_content {
+    .events {
+      text-align: left;
+    }
   }
 }
 
@@ -82,7 +93,6 @@
 
     .events {
       margin: 1.5em 0.8em 0;
-      text-align: left;
 
       .events-title {
         margin-bottom: -0.25em;
